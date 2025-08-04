@@ -3,7 +3,7 @@ import { SmallBallIcon } from "../common/Icons";
 import Title from "../common/Title";
 
 const Section42 = () => {
-  return  <div className=" min-h-screen bg-custom flex justify-center items-center section-padding-x text-center">
+  return  <div className=" min-h-screen  flex justify-center items-center section-padding-x text-center">
       <div className=" flex flex-col gap-20">
         <div className="flex flex-wrap items-center justify-center max-w-[800px] mx-auto  gap-6 ">
           {Array.from({ length: 6 }).map((_, index) => (

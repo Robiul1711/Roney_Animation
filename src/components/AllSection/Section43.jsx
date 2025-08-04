@@ -4,7 +4,7 @@ import Title from "../common/Title";
 
 const Section43 = () => {
   return (
-    <div className=" min-h-screen bg-custom flex justify-center items-center section-padding-x text-center">
+    <div className=" min-h-screen  flex justify-center items-center section-padding-x text-center">
       <div className=" flex flex-col gap-10 md:gap-20">
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 max-w-[800px] mx-auto">
           {Array.from({ length: 8 }).map((_, index) => (

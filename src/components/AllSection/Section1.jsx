@@ -6,59 +6,66 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const data = [
-  {
-    id: 1,
-    title: "72% of business owners are burnt out, 84% work 40+ hours/week.",
-  },
+  { id: 1, title: "72% of business owners are burnt out, 84% work 40+ hours/week." },
   { id: 2, title: "39% say paperwork is the #1 time killer." },
   { id: 3, title: "37% of small businesses struggle with tech know-how" },
   { id: 4, title: "64% know they should delegate, but don’t know how." },
   { id: 5, title: "91% say automation boosts revenue" },
   { id: 6, title: "82% see lower costs or higher revenue in the first year." },
-  {
-    id: 7,
-    title:
-      "55% of small businesses increased their usage by 41% just this year.",
-  },
+  { id: 7, title: "55% of small businesses increased their usage by 41% just this year." },
   { id: 8, title: "70% want a simple, clear path." },
 ];
 
-const TYPING_SPEED = 30;
-const PAUSE_AFTER_TYPING = 2000;
+const SlideInText = ({ text }) => {
+  return (
+    <h2 className="text-white text-2xl md:text-3xl font-medium mt-8">
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: i * 0.03, ease: "easeOut" }}
+          className="inline-block"
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </h2>
+  );
+};
 
 const Section1 = () => {
-  const [displayText, setDisplayText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-  const [titleIndex, setTitleIndex] = useState(0);
-
-  const currentTitle = data[titleIndex].title;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showText, setShowText] = useState(true);
 
   useEffect(() => {
-    let timeout;
+    let timeout1, timeout2;
 
-    if (charIndex < currentTitle.length) {
-      timeout = setTimeout(() => {
-        setDisplayText((prev) => prev + currentTitle.charAt(charIndex));
-        setCharIndex((prev) => prev + 1);
-      }, TYPING_SPEED);
-    } else {
-      // After full title typed, wait, then go to next
-      timeout = setTimeout(() => {
-        const nextIndex = (titleIndex + 1) % data.length;
-        setDisplayText("");
-        setCharIndex(0);
-        setTitleIndex(nextIndex);
-      }, PAUSE_AFTER_TYPING);
-    }
+    const title = data[currentIndex].title;
+    const totalDelay = title.length * 30 + 2000; // animation time + pause
 
-    return () => clearTimeout(timeout);
-  }, [charIndex, titleIndex, currentTitle]);
+    timeout1 = setTimeout(() => {
+      setShowText(false); // Hide text before showing the next
+      timeout2 = setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % data.length);
+        setShowText(true);
+      }, 300); // small pause before switching text
+    }, totalDelay);
+
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+  }, [currentIndex]);
 
   return (
-    <div className="min-h-screen bg-custom">
-      <header className="fixed flex items-center  justify-between w-full section-padding-x py-4 z-10">
+    <div className="min-h-screen">
+      <header className="fixed flex items-center justify-between w-full section-padding-x py-4 z-10">
         <LogoIcon />
-        <Link to="/getintouch" className="bg-custom-primary text-white rounded-full py-2 px-4 flex items-center gap-2">
+        <Link
+          to="/getintouch"
+          className="bg-custom-primary text-white rounded-full py-2 px-4 flex items-center gap-2"
+        >
           Get In Touch
           <MdOutlineArrowOutward className="hidden sm:block" />
         </Link>
@@ -69,19 +76,11 @@ const Section1 = () => {
           The World is moving fast. Your business isn’t.
         </Title>
 
-        <motion.div
-          className="mt-6 text-black h-[40px] py-10 max-w-[1100px] flex items-center justify-center"
-          initial={{ opacity: 0.2 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Title
-            level="title48"
-            className="font-DmMono transition-opacity duration-300 ease-in-out"
-          >
-            {displayText}
-          </Title>
-        </motion.div>
+        {/* Animated Changing Title */}
+        <div className="flex flex-col items-center justify-center h-[40px]">
+        {showText && <SlideInText text={data[currentIndex].title} />}
+
+        </div>
 
         <Title level="title24" className="text-custom-primary mt-12">
           We help you shift into a brighter future..

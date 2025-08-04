@@ -5,7 +5,7 @@ import { SmallBallIcon } from "../common/Icons";
 const Section41 = ({ activeIndex }) => {
   console.log(activeIndex);
   return (
-    <div className=" min-h-screen bg-custom flex justify-center items-center section-padding-x">
+    <div className=" min-h-screen  flex justify-center items-center section-padding-x">
       <div className=" flex flex-col gap-20">
         <div className="flex flex-wrap items-center justify-center gap-6">
           {Array.from({ length: 5 }).map((_, index) => (

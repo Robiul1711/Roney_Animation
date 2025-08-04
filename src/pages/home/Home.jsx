@@ -40,9 +40,12 @@ const Home = () => {
           mousewheel={{ forceToAxis: true }}
           slidesPerView={1}
           speed={800}
-          className="h-screen"
+          simulateTouch={false}
+          allowTouchMove={false}
+          className="h-screen bg-custom2"
           style={{ scrollbar: "none" }}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+          
         >
           {sections.map((Section, index) => (
             <SwiperSlide key={index}>

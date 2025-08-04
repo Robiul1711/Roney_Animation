@@ -5,7 +5,7 @@ import { FullBigBallIcon, SmallBallIcon } from "../common/Icons";
 const Section3 = () => {
   return (
     // section 1
-    <div className=" h-screen overflow-hidden relative section-padding-x text-center flex-col bg-custom flex  ">
+    <div className=" h-screen overflow-hidden relative section-padding-x text-center flex-col  flex  ">
       <div className="mt-40">
         <Title level="title56" className="text-white">
           You don’t need to figure it out alone. We guide, build, and deliver{" "}

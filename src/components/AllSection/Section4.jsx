@@ -6,7 +6,7 @@ import { FullBigBallIcon, SmallBallIcon } from "../common/Icons";
 const Section4 = ({ activeIndex }) => {
   const isActive = activeIndex === 3;
   return (
-    <div className="min-h-screen bg-custom flex justify-center items-center relative">
+    <div className="min-h-screen  flex justify-center items-center relative">
       {/* Animated Ball */}
 <motion.div
   initial={{ opacity: 1, top: "5%", scale: 1.5 }}

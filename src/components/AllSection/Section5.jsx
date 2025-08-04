@@ -59,15 +59,8 @@ const Section5 = () => {
   return (
     <div
       ref={ref}
-      className="min-h-screen flex justify-center items-center flex-col bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `linear-gradient(
-          270deg,
-          rgba(16, 154, 255, 0.3) 0%,
-          rgba(16, 154, 255, 0.6) 54.33%,
-          rgba(16, 154, 255, 0.3) 100%
-        ), url(${bgShadow})`,
-      }}
+      className="min-h-screen flex justify-center  items-center flex-col bg-cover bg-center bg-no-repeat"
+     
     >
       <Title level="title56" className="text-white">
         We Deliver Transformation
@@ -77,11 +70,11 @@ const Section5 = () => {
         {data.map((item, index) => (
           <div
             key={item.id}
-            className="p-4 md:p-6 border-2 border-white/30 bg-white/30 backdrop-blur-xl rounded-2xl flex flex-col gap-5 md:gap-10 items-center justify-center"
+            className="p-4 md:p-6 border-2 border-white/30 bg-white backdrop-blur-xl rounded-2xl flex flex-col gap-5 md:gap-10 items-center justify-center"
           >
             <Title
               level="title48"
-              className="text-custom-primary border-b-2 border-white/30 w-full text-center  md:pb-4"
+              className="text-custom-primary border-b-2 border-black w-full text-center  md:pb-4"
             >
               {typeof counts[index] === "number"
                 ? counts[index] + (item.title.includes("+") ? "+" : "")
